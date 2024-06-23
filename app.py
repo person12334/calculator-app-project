@@ -1,6 +1,7 @@
 import math
 import tkinter as tk
 from tkinter.constants import END
+from tkinter import messagebox
 
 
 class Button(tk.Button):
@@ -127,29 +128,33 @@ class Calculator:
         num2 = self.e.get()
         expression = ''
         ans = ''
-        if self.stat == "+":
-            ans = float(self.num) + float(num2)
-            expression = f"{self.num} + {num2} = {ans}"
-        elif self.stat == "-":
-            ans = float(self.num) - float(num2)
-            expression = f"{self.num} - {num2} = {ans}"
-        elif self.stat == "x":
-            ans = float(self.num) * float(num2)
-            expression = f"{self.num} * {num2} = {ans}"
-        elif self.stat == "/":
-            ans = "{:.3f}".format(float(self.num) / float(num2))
-            expression = f"{self.num} / {num2} = {ans}"
-        elif self.stat == "root":
-            ans = "{:.2f}".format(math.pow(float(num2), 1 / 2))
-            expression = f"root {num2} = {ans}"
-        elif self.stat == "pow":
-            ans = "{:.2f}".format(math.pow(float(self.num), int(num2)))
-            expression = f"{self.num} pow {num2} = {ans}"
+        try:
+            if self.stat == "+":
+                ans = float(self.num) + float(num2)
+                expression = f"{self.num} + {num2} = {ans}"
+            elif self.stat == "-":
+                ans = float(self.num) - float(num2)
+                expression = f"{self.num} - {num2} = {ans}"
+            elif self.stat == "x":
+                ans = float(self.num) * float(num2)
+                expression = f"{self.num} * {num2} = {ans}"
+            elif self.stat == "/":
+                ans = "{:.3f}".format(float(self.num) / float(num2))
+                expression = f"{self.num} / {num2} = {ans}"
+            elif self.stat == "root":
+                ans = "{:.2f}".format(math.pow(float(num2), 1 / 2))
+                expression = f"root {num2} = {ans}"
+            elif self.stat == "pow":
+                ans = "{:.2f}".format(math.pow(float(self.num), int(num2)))
+                expression = f"{self.num} pow {num2} = {ans}"
 
-        self.e.delete(0, END)
-        self.e.insert(0, ans)
-        self.update_view(expression)
-        self.flag = 1
+            self.e.delete(0, END)
+            self.e.insert(0, ans)
+            self.update_view(expression)
+            self.flag = 1
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+
 
     def clear(self):
         self.update_label("")
