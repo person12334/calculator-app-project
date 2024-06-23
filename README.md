@@ -25,7 +25,7 @@ A preview of how it looks and functions.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/calculator-app.git
+   git clone https://github.com/person12334/calculator-app-project.git
    cd calculator-app
    ```
 
